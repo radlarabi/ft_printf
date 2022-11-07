@@ -6,14 +6,13 @@
 /*   By: rlarabi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 11:56:57 by rlarabi           #+#    #+#             */
-/*   Updated: 2022/11/05 15:56:45 by rlarabi          ###   ########.fr       */
+/*   Updated: 2022/11/06 19:19:31 by rlarabi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdarg.h>
 
-static int	check_format(va_list args, const char *str)
+int	check_format(va_list args, const char *str)
 {
 	int	ret;
 
@@ -27,9 +26,9 @@ static int	check_format(va_list args, const char *str)
 	else if (*(str + 1) == '%')
 		ret += ft_putchar('%');
 	else if (*(str + 1) == 'X')
-		ret += hexa(va_arg(args, size_t), 'X');
+		ret += hexa(va_arg(args, unsigned int), 'X');
 	else if (*(str + 1) == 'x')
-		ret += hexa(va_arg(args, size_t), 'x');
+		ret += hexa(va_arg(args, unsigned int), 'x');
 	else if (*(str + 1) == 'u')
 		ret += ft_putnbr_u(va_arg(args, unsigned int));
 	else if (*(str + 1) == 'p')
@@ -56,6 +55,8 @@ int	ft_printf(const char *str, ...)
 		}
 		if (*str == '%')
 		{
+			if (*(str + 1) == '\0')
+				break ;
 			ret += check_format(args, str);
 			str += 2;
 		}

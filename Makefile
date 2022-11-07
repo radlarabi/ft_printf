@@ -4,8 +4,7 @@ FILES = 	ft_printf.c \
 			ft_putnbr.c  \
 			ft_putchar.c \
 			ft_putstr.c \
-			ft_print_void.c \
-			hexa_unsigned_long.c \
+			ft_print_void.c 
 
 CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
